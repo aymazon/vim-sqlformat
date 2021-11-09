@@ -22,7 +22,10 @@ NL = '\n'
 
 try:
     sql = NL.join(buf[start:end + 1])
-    sql_new = sqlparse.format(sql, reindent=True, keyword_case='upper')
+    sql_new = sqlparse.format(sql,
+        reindent=True, keyword_case='upper', identifier_case='lower',
+        strip_comments=True, use_space_around_operators=True, comma_first=True
+        )
 
     lines = [line.encode('utf-8') for line in sql_new.split(NL)] + ['']
 
